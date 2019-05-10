@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>            
+    </head>
+    <body>
+        <div class="container">
+            <h1>삽입 정렬</h1>
+            <input type="text" id="numList">
+            <button id="button">결과확인</button>
+            <div id="result">
+        </div>
+
+        </div>
+
+        <script>
+            document.getElementById("button").onclick = function(){
+                $('#result').empty();
+
+                var array = $.map($("#numList").val().split(','), function(value){
+                    return parseInt(value, 10);
+                });
+
+                insertionSort(array);
+            }
+        
+            var insertionSort = function(array) {
+                var i = 1, j, temp;
+                for (i; i < array.length; i++) {
+                    temp = array[i]; // 새로운 숫자를 선택함
+                    for (j = i - 1; j >= 0 && temp < array[j]; j--) { // 선택한 숫자를 이미 정렬된 숫자들과 비교하며 넣을 위치를 찾는 과정, 선택한 숫자가 정렬된 숫자보다 작으면
+                    array[j + 1] = array[j]; // 한 칸씩 뒤로 밀어낸다
+                    }
+                    array[j + 1] = temp; // 마지막 빈 칸에 선택한 숫자를 넣어준다.
+                    $('#result').append(array+"<br>");
+                }
+                return array;
+            };
+
+        </script>
+    </body>
+</html>
