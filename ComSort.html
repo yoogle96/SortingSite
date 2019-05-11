@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>            
+
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <nav id="sidebar">
+                <div class="sidernar-header">
+                    <h3>정렬 알고리즘</h3>
+                    <div class="logo">
+                        <img src="nsu.png" alt="">
+                    </div>
+                    <div class="progress mt-3 " style="height: 30px">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">15100047 유의선</div>
+                    </div>
+                </div>
+                
+                <ul class="list-unstyled components">
+                    
+                    <li><a href="SelectionSort.html">선택 정렬</a></li>
+                    <li><a href="BubbleSort.html">버블 정렬</a></li>
+                    <li><a href="InsertionSort.html">삽입 정렬</a></li>
+                    <li><a href="ShellSort.html">셸 정렬</a></li>
+                    <li><a href="GnomeSort.html">난쟁이 정렬</a></li>
+                    <li><a href="CountingSort.html">계수 정렬</a></li>
+                    <li><a href="CocktailSort.html">칵테일 정렬</a></li>
+                    <li><a href="RedixSort.html">기수 정렬</a></li>
+                    <li><a href="MergeSort.html">병합 정렬</a></li>
+                    <li><a href="BucketSort.html">버킷 정렬</a></li>
+                    <li><a href="QuickSort.html">퀵 정렬</a></li>
+                    <li><a href="ComSort.html" id="select">콤 정렬</a></li>
+                    <li><a href="HeapSort.html">힙 정렬</a></li>
+                    <li><a href="TreeSort.html">트리 정렬</a></li>
+                </ul>
+            </nav>
+        
+            <div class="container">
+                <div class="title">
+                    <h1>콤 정렬</h1>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputPassword1" class="col-12">정렬할 수</label>
+                    <input type="text" class="form-control col-9 mr-3" id="numList" placeholder="정렬할 숫자를 입력하세요. ',' 로 구분 ex) 5, 1, 22, 16, 8">
+                    <button id="button" class="btn btn-secondary col-2">결과확인</button>
+                </div>
+                
+                <div id="result">
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("button").onclick = function(){
+                $('#result').empty();
+
+                var array = $.map($("#numList").val().split(','), function(value){
+                    return parseInt(value, 10);
+                });
+
+                bubbleSort(array);
+                $('#result').append('<p>' + array +'</p>');
+            }
+        
+            var bubbleSort = function(array) {
+                var length = array.length;
+                var i, j, temp;
+                for (i = 0; i < length - 1; i++) { // 순차적으로 비교하기 위한 반복문
+                    for (j = 0; j < length - 1 - i; j++) { // 끝까지 돌았을 때 다시 처음부터 비교하기 위한 반복문
+                    if (array[j] > array[j + 1]) { // 두 수를 비교하여 앞 수가 뒷 수보다 크면
+                        temp = array[j]; // 두 수를 서로 바꿔준다
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+                    }
+                    }
+                    // $('#result').append('<p> Step '+ i + ') '+ array+'</p>');
+                }
+                return array;
+            };
+
+        </script>
+    </body>
+</html>
